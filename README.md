@@ -1,6 +1,6 @@
 # [Nicks.Guru](https://nicks.guru) Commons Job Executor
 
-<img alt="Latest version" src="https://img.shields.io/maven-central/v/guru.nicks.commons/job-executor?filter=!25.*&label=Latest%20version:&cacheSeconds=7200"/> <img alt="Release date" src="https://img.shields.io/maven-central/last-update/guru.nicks.commons/job-executor?label=&color=orange&cacheSeconds=7200"/>
+![Latest version](https://img.shields.io/maven-central/v/guru.nicks.commons/job-executor?filter=!25.*&label=Latest%20version:&cacheSeconds=7200) ![Release date](https://img.shields.io/maven-central/last-update/guru.nicks.commons/job-executor?label=&color=orange&cacheSeconds=7200)
 
 Job executor (mainly for periodic jobs).
 
