@@ -1,4 +1,4 @@
-package guru.nicks.job;
+package guru.nicks.commons.job;
 
 /**
  * Job.

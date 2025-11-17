@@ -1,10 +1,10 @@
-package guru.nicks.job.impl;
+package guru.nicks.commons.job.impl;
 
-import guru.nicks.job.Job;
-import guru.nicks.job.exception.JobExecutionException;
-import guru.nicks.job.service.JobExecutorService;
-import guru.nicks.log.domain.LogContext;
-import guru.nicks.utils.LockUtils;
+import guru.nicks.commons.job.Job;
+import guru.nicks.commons.job.exception.JobExecutionException;
+import guru.nicks.commons.job.service.JobExecutorService;
+import guru.nicks.commons.log.domain.LogContext;
+import guru.nicks.commons.utils.LockUtils;
 
 import am.ik.yavi.meta.ConstraintArguments;
 import lombok.AccessLevel;
@@ -19,8 +19,8 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.StampedLock;
 
-import static guru.nicks.validation.dsl.ValiDsl.checkNotBlank;
-import static guru.nicks.validation.dsl.ValiDsl.checkNotNull;
+import static guru.nicks.commons.validation.dsl.ValiDsl.checkNotBlank;
+import static guru.nicks.commons.validation.dsl.ValiDsl.checkNotNull;
 
 /**
  * Runs jobs.

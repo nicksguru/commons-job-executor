@@ -1,6 +1,6 @@
-package guru.nicks;
+package guru.nicks.commons;
 
-import guru.nicks.cucumber.world.CucumberConstants;
+import guru.nicks.commons.cucumber.world.CucumberConstants;
 
 import io.cucumber.junit.platform.engine.Constants;
 import org.junit.platform.suite.api.ConfigurationParameter;

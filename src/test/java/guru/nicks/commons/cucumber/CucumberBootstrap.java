@@ -1,6 +1,6 @@
-package guru.nicks.cucumber;
+package guru.nicks.commons.cucumber;
 
-import guru.nicks.cucumber.world.TextWorld;
+import guru.nicks.commons.cucumber.world.TextWorld;
 
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.mockito.Mock;

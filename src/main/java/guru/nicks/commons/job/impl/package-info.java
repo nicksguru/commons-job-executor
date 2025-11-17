@@ -1,4 +1,4 @@
 @NonNullApi
-package guru.nicks.job.service;
+package guru.nicks.commons.job.impl;
 
 import org.springframework.lang.NonNullApi;

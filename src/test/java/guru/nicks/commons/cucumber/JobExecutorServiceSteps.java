@@ -1,9 +1,9 @@
-package guru.nicks.cucumber;
+package guru.nicks.commons.cucumber;
 
-import guru.nicks.cucumber.world.TextWorld;
-import guru.nicks.job.Job;
-import guru.nicks.job.exception.JobExecutionException;
-import guru.nicks.job.impl.AbstractJobExecutorServiceImpl;
+import guru.nicks.commons.cucumber.world.TextWorld;
+import guru.nicks.commons.job.Job;
+import guru.nicks.commons.job.exception.JobExecutionException;
+import guru.nicks.commons.job.impl.AbstractJobExecutorServiceImpl;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

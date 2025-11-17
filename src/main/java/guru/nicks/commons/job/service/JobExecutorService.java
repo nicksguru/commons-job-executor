@@ -1,8 +1,8 @@
-package guru.nicks.job.service;
+package guru.nicks.commons.job.service;
 
-import guru.nicks.job.Job;
-import guru.nicks.job.exception.JobExecutionException;
-import guru.nicks.log.domain.LogContext;
+import guru.nicks.commons.job.Job;
+import guru.nicks.commons.job.exception.JobExecutionException;
+import guru.nicks.commons.log.domain.LogContext;
 
 import org.springframework.security.core.Authentication;
 

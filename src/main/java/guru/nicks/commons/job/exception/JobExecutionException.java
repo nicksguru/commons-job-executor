@@ -1,4 +1,4 @@
-package guru.nicks.job.exception;
+package guru.nicks.commons.job.exception;
 
 import lombok.experimental.StandardException;
 
