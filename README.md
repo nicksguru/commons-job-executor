@@ -10,7 +10,8 @@ Job executor (mainly for periodic jobs).
 
 The version format is inspired by [Scalver](https://scalver.org) and looks like `M.yymm.N` (in UTC timezone), where:
 
-* `M`  - major version, same as in [SemVer](https://semver.org): starts from 0, increments in case of backwards incompatibility
+* `M`  - major version, same as in [SemVer](https://semver.org): starts from 0, increments in case of backwards
+  incompatibility
 * `yy` - year minus 2000: 25 for 2025, 100 for 2100
 * `mm` - month (zero-padded): 01 = Jan, 02 = Feb, 12 = Dec
 * `N`  - incremental build number, starts from 0 every month
@@ -44,6 +45,9 @@ See full version history on
 ## Documentation
 
 To browse the API documentation, click [here](https://nicks.guru/commons/commons-job-executor/apidocs).
+
+This software adheres to the BDD (Behavior-Driven Development) approach. See module usage examples in Cucumber
+test [scenarios](src/test/resources/cucumber/) and [steps](src/test/java/guru/nicks/cucumber/).
 
 ## Disclaimer
 
