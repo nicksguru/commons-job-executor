@@ -49,7 +49,6 @@ public abstract class AbstractJobExecutorServiceImpl implements JobExecutorServi
      */
     private final StampedLock jobStartLock = new StampedLock();
 
-
     @ConstraintArguments
     @Override
     public void execute(Job job) {
