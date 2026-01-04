@@ -92,7 +92,7 @@ public abstract class AbstractJobExecutorServiceImpl implements JobExecutorServi
             return;
         }
 
-        LockUtils.runWithExclusiveLock(jobStartLock, () -> {
+        LockUtils.withExclusiveLock(jobStartLock, () -> {
             // this method is atomic or not depending on the Map implementation
             Instant existingStart = jobStartInstant.putIfAbsent(job, Instant.now());
 
@@ -101,6 +101,8 @@ public abstract class AbstractJobExecutorServiceImpl implements JobExecutorServi
                         job.getName(), existingStart, formatJobDurationFromInstant(existingStart));
                 throw new JobExecutionException(message);
             }
+
+            return null;
         });
     }
 
@@ -138,8 +140,10 @@ public abstract class AbstractJobExecutorServiceImpl implements JobExecutorServi
      * @param job job to mark as not running
      */
     protected void markJobAsNotRunning(Job job) {
-        LockUtils.runWithExclusiveLock(jobStartLock,
-                () -> jobStartInstant.remove(job));
+        LockUtils.withExclusiveLock(jobStartLock, () -> {
+            jobStartInstant.remove(job);
+            return null;
+        });
     }
 
     /**
