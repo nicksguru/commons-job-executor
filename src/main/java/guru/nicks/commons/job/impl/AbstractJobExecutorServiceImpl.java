@@ -10,6 +10,7 @@ import am.ik.yavi.meta.ConstraintArguments;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -74,6 +75,8 @@ public abstract class AbstractJobExecutorServiceImpl implements JobExecutorServi
             LogContext.clearAll();
             // theoretically, this may fail, therefore the log context is cleared above to avoid such leftovers
             markJobAsNotRunning(job);
+            // the scheduler thread is reused by unrelated @Scheduled tasks, so job auth must not leak
+            SecurityContextHolder.clearContext();
         }
     }
 

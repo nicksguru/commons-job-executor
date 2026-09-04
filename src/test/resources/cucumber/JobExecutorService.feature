@@ -50,3 +50,17 @@ Feature: Job Executor Service
     Then a JobExecutionException should be thrown
     And the exception should have NullPointerException as its cause
     And the cause should have the message "Critical data missing"
+
+  Scenario: Successful job completion clears the security context
+    Given a job that completes successfully
+    And the security context contains an authenticated user "testuser"
+    When the job is executed
+    Then no exception should be thrown
+    And the security context should be cleared
+
+  Scenario: Failing job still clears the security context
+    Given a job that throws an exception
+    And the security context contains an authenticated user "testuser"
+    When the job is executed
+    Then a JobExecutionException should be thrown
+    And the security context should be cleared

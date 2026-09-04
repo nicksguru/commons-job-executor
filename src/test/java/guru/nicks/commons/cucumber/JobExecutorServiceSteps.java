@@ -14,6 +14,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -86,6 +88,22 @@ public class JobExecutorServiceSteps {
         jobStartInstant.put(testJob, Instant.now().minusSeconds(60));
     }
 
+    /**
+     * Establishes an authenticated security context, so the scenarios can verify that
+     * {@link AbstractJobExecutorServiceImpl#execute(Job)} clears it upon job completion.
+     *
+     * @param username name of the authenticated principal
+     */
+    @Given("the security context contains an authenticated user {string}")
+    public void theSecurityContextContainsAnAuthenticatedUser(String username) {
+        var authorities = AuthorityUtils.createAuthorityList("ROLE_JOB");
+        var authentication = new UsernamePasswordAuthenticationToken(username, "N/A", authorities);
+
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(authentication);
+    }
+
     @Given("a job with name {string} that completes successfully")
     public void aJobWithNameThatCompletesSuccessfully(String jobName) {
         testJob = TestJob.builder()
@@ -128,6 +146,17 @@ public class JobExecutorServiceSteps {
         assertThat(jobStartInstant.containsKey(testJob))
                 .as("job still running")
                 .isFalse();
+    }
+
+    /**
+     * Verifies that the security context was cleared after job execution, so job authentication does not leak into
+     * unrelated tasks sharing the same scheduler thread.
+     */
+    @Then("the security context should be cleared")
+    public void theSecurityContextShouldBeCleared() {
+        assertThat(SecurityContextHolder.getContext().getAuthentication())
+                .as("authentication after job execution")
+                .isNull();
     }
 
     @Then("the job execution should complete without exceptions")

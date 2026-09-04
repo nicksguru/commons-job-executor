@@ -5,6 +5,7 @@ import guru.nicks.commons.job.exception.JobExecutionException;
 import guru.nicks.commons.log.domain.LogContext;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Job executor - with statistics, concurrency, and error reporting.
@@ -12,8 +13,10 @@ import org.springframework.security.core.Authentication;
 public interface JobExecutorService {
 
     /**
-     * Runs the given job. Upon job completion, no matter successful or not, clears ALL {@link LogContext} entries to
-     * prevent, in other threads, such leftovers as current username (the jobs are supposed to run asynchronously).
+     * Runs the given job.  Spring scheduler reuses its threads for unrelated tasks. For this reason, upon job
+     * completion - no matter successful or not - this method clears all {@link LogContext} entries to avoid such
+     * leftovers as current username (the jobs are supposed to run asynchronously). For the same reason,
+     * {@link SecurityContextHolder#clearContext()} is called.
      *
      * @param job job to execute
      * @throws JobExecutionException if {@link Job#allowConcurrentExecution()} is {@code false}, but another job with
