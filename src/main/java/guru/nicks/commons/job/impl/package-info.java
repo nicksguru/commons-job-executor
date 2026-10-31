@@ -1,4 +1,4 @@
-@NonNullApi
+@NullMarked
 package guru.nicks.commons.job.impl;
 
-import org.springframework.lang.NonNullApi;
+import org.jspecify.annotations.NullMarked;
